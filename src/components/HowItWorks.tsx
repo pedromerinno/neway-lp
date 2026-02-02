@@ -6,21 +6,21 @@ import { Card, CardContent } from "@/ui/card";
 const steps = [
   {
     number: "01",
-    title: "Discuss your outdoor living needs",
+    title: "Contact our team for a free estimate",
     description:
-      "We meet with you to understand your vision, budget, and how you want to use your space.",
+      "Reach out and we'll schedule a no-obligation consultation to discuss your vision and budget.",
   },
   {
     number: "02",
-    title: "Design & plan",
+    title: "Initial consultation",
     description:
-      "Our designers create a custom plan and 3D renderings so you can see exactly how your space will look.",
+      "We meet with you to understand your needs, preferences, and how you want to use your outdoor space.",
   },
   {
     number: "03",
-    title: "Construction",
+    title: "Design & construction",
     description:
-      "Our skilled team brings the design to life with clear communication and minimal disruption.",
+      "Our team creates a custom plan and brings it to life with clear communication and minimal disruption.",
   },
   {
     number: "04",
@@ -55,10 +55,10 @@ export function HowItWorks() {
           className="text-center mb-14"
         >
           <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Our Process
+            Process
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
-            How it works
+            How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             A clear, stress-free process from first call to first splash.

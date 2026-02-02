@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/ui/card";
 const items = [
   {
     icon: Ruler,
-    title: "15+ Years of Experience in exquisite pools",
+    title: "Over 10 years of experience in custom pools",
     description:
       "We bring decades of expertise to every project, ensuring quality and craftsmanship that stands the test of time.",
   },
@@ -56,7 +56,7 @@ export function WhyChoose() {
           className="text-center mb-14"
         >
           <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Our Promise
+            About Us
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
             Why Choose Neway Pools

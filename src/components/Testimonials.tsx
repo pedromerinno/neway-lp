@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Quote } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/ui/card";
 import { Button } from "@/ui/button";
 
@@ -10,8 +10,8 @@ const testimonials = [
   {
     quote:
       "Neway Pools transformed our backyard into a paradise. The pool design was exactly what we dreamed of, and the team was professional from start to finish.",
-    author: "Maria & João Silva",
-    role: "Residential Project",
+    author: "John Smith",
+    role: "Orlando, FL",
     rating: 5,
   },
   {
@@ -69,7 +69,7 @@ export function Testimonials() {
           className="text-center mb-14"
         >
           <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Our Customers
+            Testimonials
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
             What Clients Say About Neway Pools
@@ -111,19 +111,11 @@ export function Testimonials() {
                 >
                   <Card className="border-0 bg-neway-navy text-white shadow-lg rounded-2xl overflow-hidden relative">
                     <CardContent className="p-8 md:p-10 relative">
-                      <Quote
-                        className="absolute top-6 left-6 w-12 h-12 text-white/20 -rotate-12"
-                        aria-hidden
-                      />
-                      <Quote
-                        className="absolute bottom-6 right-6 w-10 h-10 text-white/20 rotate-12 scale-[-1]"
-                        aria-hidden
-                      />
-                      <blockquote className="text-xl md:text-2xl font-medium leading-relaxed text-white/95 mb-4 relative z-10 pl-2">
+                      <blockquote className="text-xl md:text-2xl font-medium leading-relaxed text-white/95 mb-4">
                         {testimonials[index].quote}
                       </blockquote>
                       <StarRating count={testimonials[index].rating} />
-                      <footer className="relative z-10">
+                      <footer>
                         <cite className="not-italic font-semibold text-white">
                           {testimonials[index].author}
                         </cite>

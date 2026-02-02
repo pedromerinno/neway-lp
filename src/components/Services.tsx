@@ -7,43 +7,37 @@ import { Card, CardContent } from "@/ui/card";
 
 const services = [
   {
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6e3?q=80&w=1170&auto=format&fit=crop",
+    image: "/img-01.jpg",
     title: "Custom pool renovation",
     description:
       "Transform your existing pool with modern finishes, new features, and expert craftsmanship.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1170&auto=format&fit=crop",
+    image: "/img-02.jpg",
     title: "Pool maintenance",
     description:
       "Keep your pool in pristine condition with our comprehensive maintenance and care programs.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1170&auto=format&fit=crop",
+    image: "/img-03.jpg",
     title: "Outdoor living spaces",
     description:
       "Patios, fire pits, outdoor kitchens, and more — designed to extend your living space.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?q=80&w=1170&auto=format&fit=crop",
-    title: "New pool construction",
+    image: "/img-04.jpg",
+    title: "Pool installation",
     description:
       "From design to the first splash, we build custom pools tailored to your vision.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1170&auto=format&fit=crop",
+    image: "/img-05.jpg",
     title: "Lighting & water features",
     description:
       "Ambient lighting, fountains, and water features that elevate your outdoor experience.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1170&auto=format&fit=crop",
+    image: "/img-06.jpg",
     title: "Landscape integration",
     description:
       "Seamless blend of pool, hardscape, and greenery for a cohesive backyard oasis.",
@@ -75,10 +69,10 @@ export function Services() {
           className="text-center mb-14"
         >
           <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Our Offerings
+            Services
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
-            Our services
+            Our Services
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             From concept to completion, we bring your outdoor vision to life.

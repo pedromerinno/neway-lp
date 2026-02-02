@@ -10,7 +10,7 @@ export function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+          src="/img-01.jpg"
           alt="Piscina e área externa de luxo"
           fill
           className="object-cover"
@@ -20,18 +20,26 @@ export function Hero() {
         <div className="absolute inset-0 bg-neway-navy/70 z-10" aria-hidden />
       </div>
 
-      <header className="relative z-20 container mx-auto px-6 pt-8 md:pt-10">
+      <header className="relative z-20 container mx-auto px-6 pt-8 md:pt-10 flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col"
+          className="flex flex-col items-center gap-1"
         >
-          <span className="text-2xl md:text-3xl font-semibold tracking-tight text-white">
-            neWay
-          </span>
-          <span className="text-sm md:text-base text-white/90 mt-0.5">
-            Neway Pools
+          <Link href="#" className="inline-block w-fit" aria-label="Neway Pools - início">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="NeWay"
+              width={280}
+              height={168}
+              className="h-20 w-auto md:h-24 lg:h-28 invert"
+              fetchPriority="high"
+            />
+          </Link>
+          <span className="text-sm md:text-base font-medium tracking-[0.2em] text-white uppercase">
+            POOLS
           </span>
         </motion.div>
       </header>
@@ -52,7 +60,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto"
         >
-          Our commitment to our clients makes our proposals outstanding.
+          Our commitment is to create custom experiences for every client.
         </motion.p>
 
         <motion.div

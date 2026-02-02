@@ -5,18 +5,9 @@ import { MapPin } from "lucide-react";
 import { Card, CardContent } from "@/ui/card";
 
 const locations = [
-  {
-    city: "Miami",
-    description: "Covering all the surrounding cities and neighborhoods.",
-  },
-  {
-    city: "Orlando",
-    description: "Covering all the surrounding cities and neighborhoods.",
-  },
-  {
-    city: "Tampa",
-    description: "Covering all the surrounding cities and neighborhoods.",
-  },
+  { city: "Orlando", description: "Florida" },
+  { city: "Sarasota", description: "Florida" },
+  { city: "Fort Myers", description: "Florida" },
 ];
 
 const container = {
@@ -44,13 +35,13 @@ export function Location() {
           className="text-center mb-14"
         >
           <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Where We Operate
+            Locations
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
             Location & Service Areas
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            We serve Miami, Orlando, Tampa and surrounding areas.
+            We serve Orlando, Sarasota, Fort Myers and surrounding areas.
           </p>
         </motion.div>
 

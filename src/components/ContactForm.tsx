@@ -4,15 +4,39 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, ChevronRight } from "lucide-react";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Textarea } from "@/ui/textarea";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/ui/select";
+import {
   contactFormSchema,
   type ContactFormValues,
 } from "@/lib/contact-schema";
+
+const TYPE_OF_INTEREST = [
+  "New pool construction",
+  "Pool renovation",
+  "Pool maintenance",
+  "Outdoor living space",
+  "Landscaping",
+  "Other",
+];
+
+const BUDGET_RANGES = [
+  "Under $50k",
+  "$50k – $100k",
+  "$100k – $200k",
+  "$200k – $500k",
+  "Over $500k",
+];
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<
@@ -22,6 +46,8 @@ export function ContactForm() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     reset,
     formState: { errors },
   } = useForm<ContactFormValues>({
@@ -30,13 +56,15 @@ export function ContactForm() {
       name: "",
       email: "",
       phone: "",
-      address: "",
-      city: "",
-      state: "",
-      zipCode: "",
+      cityState: "",
+      typeOfInterest: "",
+      approximateBudget: "",
       message: "",
     },
   });
+
+  const typeOfInterest = watch("typeOfInterest");
+  const approximateBudget = watch("approximateBudget");
 
   async function onSubmit(data: ContactFormValues) {
     setSubmitStatus("loading");
@@ -67,16 +95,12 @@ export function ContactForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
-            Get a free quote
+          <p className="text-sm font-medium uppercase tracking-wider text-[#8b7355] mb-2">
+            Contact
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
             Let&apos;s Start Your Project!
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Tell us about your vision and we&apos;ll get back to you within 24
-            hours.
-          </p>
         </motion.div>
 
         <motion.div
@@ -84,7 +108,7 @@ export function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl mx-auto rounded-2xl bg-neway-navy p-6 md:p-10 shadow-xl"
+          className="max-w-2xl mx-auto rounded-2xl md:rounded-3xl bg-neway-navy p-6 md:p-10 shadow-xl overflow-hidden"
         >
           {submitStatus === "success" && (
             <div
@@ -110,12 +134,12 @@ export function ContactForm() {
           >
             <div className="space-y-2">
               <Label htmlFor="name" className="text-white/90">
-                Your Name
+                Full Name <span className="text-neway-orange">*</span>
               </Label>
               <Input
                 id="name"
                 placeholder="Your name"
-                className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
+                className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange rounded-lg"
                 {...register("name")}
               />
               {errors.name && (
@@ -123,107 +147,108 @@ export function ContactForm() {
               )}
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white/90">
+                  Email <span className="text-neway-orange">*</span>
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange rounded-lg"
+                  {...register("email")}
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-300">{errors.email.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-white/90">
+                  Phone <span className="text-neway-orange">*</span>
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="(00) 00000-0000"
+                  className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange rounded-lg"
+                  {...register("phone")}
+                />
+                {errors.phone && (
+                  <p className="text-sm text-red-300">{errors.phone.message}</p>
+                )}
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white/90">
-                Email Address
+              <Label htmlFor="cityState" className="text-white/90">
+                City/State <span className="text-neway-orange">*</span>
               </Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                {...register("email")}
+                id="cityState"
+                placeholder="Your city, State"
+                className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange rounded-lg"
+                {...register("cityState")}
               />
-              {errors.email && (
-                <p className="text-sm text-red-300">{errors.email.message}</p>
+              {errors.cityState && (
+                <p className="text-sm text-red-300">{errors.cityState.message}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-white/90">
-                Phone Number
+              <Label className="text-white/90">
+                Type of Interest <span className="text-neway-orange">*</span>
               </Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="(000) 000-0000"
-                className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                {...register("phone")}
-              />
-              {errors.phone && (
-                <p className="text-sm text-red-300">{errors.phone.message}</p>
+              <Select
+                value={typeOfInterest}
+                onValueChange={(v) => setValue("typeOfInterest", v)}
+              >
+                <SelectTrigger className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus:ring-neway-orange rounded-lg [&>span]:text-white [&>span]:placeholder:text-white/50">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent>
+                  {TYPE_OF_INTEREST.map((opt) => (
+                    <SelectItem key={opt} value={opt}>
+                      {opt}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.typeOfInterest && (
+                <p className="text-sm text-red-300">
+                  {errors.typeOfInterest.message}
+                </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="address" className="text-white/90">
-                Full Address
-              </Label>
-              <Input
-                id="address"
-                placeholder="Street address"
-                className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                {...register("address")}
-              />
-              {errors.address && (
-                <p className="text-sm text-red-300">{errors.address.message}</p>
-              )}
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              <div className="space-y-2">
-                <Label htmlFor="city" className="text-white/90">
-                  City
-                </Label>
-                <Input
-                  id="city"
-                  placeholder="City"
-                  className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                  {...register("city")}
-                />
-                {errors.city && (
-                  <p className="text-sm text-red-300">{errors.city.message}</p>
-                )}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="state" className="text-white/90">
-                  State
-                </Label>
-                <Input
-                  id="state"
-                  placeholder="State"
-                  className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                  {...register("state")}
-                />
-                {errors.state && (
-                  <p className="text-sm text-red-300">{errors.state.message}</p>
-                )}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="zipCode" className="text-white/90">
-                  Zip Code
-                </Label>
-                <Input
-                  id="zipCode"
-                  placeholder="Zip"
-                  className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange"
-                  {...register("zipCode")}
-                />
-                {errors.zipCode && (
-                  <p className="text-sm text-red-300">{errors.zipCode.message}</p>
-                )}
-              </div>
+              <Label className="text-white/90">Approximate Budget</Label>
+              <Select
+                value={approximateBudget}
+                onValueChange={(v) => setValue("approximateBudget", v)}
+              >
+                <SelectTrigger className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus:ring-neway-orange rounded-lg [&>span]:text-white [&>span]:placeholder:text-white/50">
+                  <SelectValue placeholder="Select a range" />
+                </SelectTrigger>
+                <SelectContent>
+                  {BUDGET_RANGES.map((range) => (
+                    <SelectItem key={range} value={range}>
+                      {range}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="message" className="text-white/90">
-                Tell us about your project
+                Message <span className="text-white/60">(Optional)</span>
               </Label>
               <Textarea
                 id="message"
-                placeholder="Describe your project..."
+                placeholder="Tell us more about your dream project..."
                 rows={4}
-                className="bg-neway-navy-light border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange resize-none"
+                className="bg-neway-navy-light/80 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-neway-orange rounded-lg resize-none"
                 {...register("message")}
               />
               {errors.message && (
@@ -235,15 +260,18 @@ export function ContactForm() {
               type="submit"
               size="lg"
               disabled={submitStatus === "loading"}
-              className="w-full h-12 bg-neway-orange hover:bg-neway-orange-hover text-white font-semibold uppercase tracking-wide rounded-xl shadow-lg"
+              className="w-full h-12 md:h-14 bg-neway-orange hover:bg-neway-orange-hover text-white font-semibold uppercase tracking-wide rounded-xl shadow-lg gap-2"
             >
               {submitStatus === "loading" ? (
                 <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden />
+                  <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
                   Sending...
                 </>
               ) : (
-                "Get a free quote"
+                <>
+                  Get a free quote
+                  <ChevronRight className="h-5 w-5" aria-hidden />
+                </>
               )}
             </Button>
           </form>

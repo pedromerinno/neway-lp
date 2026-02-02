@@ -45,8 +45,8 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         neway: {
-          navy: "#0f172a",
-          "navy-light": "#1e293b",
+          navy: "#0E1E2C",
+          "navy-light": "#152536",
           orange: "#f97316",
           "orange-hover": "#ea580c",
           cream: "#fafaf9",
