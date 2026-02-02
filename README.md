@@ -77,11 +77,15 @@ Substitua `SEU_USUARIO/neway-pools-lp` pelo seu usuário e nome do repo.
 1. Acesse [vercel.com](https://vercel.com) e faça login (GitHub).
 2. **Add New** → **Project**.
 3. Importe o repositório do GitHub (ex.: `neway-pools-lp`).
-4. **Framework Preset:** Next.js (detectado automaticamente).
-5. **Root Directory:** deixe em branco.
-6. Clique em **Deploy**.
+4. **Na tela de configuração do projeto**, confira:
+   - **Framework Preset:** selecione **Next.js** (não deixe em "Other").
+   - **Output Directory:** deixe **em branco** (não use `public`).
+   - **Root Directory:** em branco.
+5. Clique em **Deploy**.
 
 A Vercel faz build com `npm run build` e publica. A cada push em `main`, um novo deploy é gerado.
+
+**Se o deploy falhar** com *"No Output Directory named public"*: vá em **Settings** → **General** → **Build & Development Settings**, defina **Framework Preset** = **Next.js** e **Output Directory** = em branco; depois faça **Redeploy**. Detalhes em [DEPLOY.md](./DEPLOY.md).
 
 ---
 
