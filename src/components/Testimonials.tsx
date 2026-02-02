@@ -62,7 +62,7 @@ export function Testimonials() {
     <section id="testimonials" className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 1, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
@@ -81,7 +81,7 @@ export function Testimonials() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 1, y: 24 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
@@ -103,9 +103,9 @@ export function Testimonials() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={index}
-                  initial={{ opacity: 1, x: 20 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 1, x: -20 }}
+                  exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                   className="w-full"
                 >

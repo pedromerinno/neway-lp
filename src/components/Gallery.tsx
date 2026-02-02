@@ -13,7 +13,7 @@ const images = [
 ];
 
 const container = {
-  hidden: { opacity: 1 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.08 },
@@ -21,7 +21,7 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 1, y: 20 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
 };
 
@@ -30,7 +30,7 @@ export function Gallery() {
     <section id="gallery" className="py-20 md:py-28 bg-neway-navy">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 1, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
