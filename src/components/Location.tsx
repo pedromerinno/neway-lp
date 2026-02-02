@@ -20,7 +20,7 @@ const locations = [
 ];
 
 const container = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   show: {
     opacity: 1,
     transition: { staggerChildren: 0.1 },
@@ -28,7 +28,7 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 1, y: 24 },
   show: { opacity: 1, y: 0 },
 };
 
@@ -37,7 +37,7 @@ export function Location() {
     <section id="location" className="py-20 md:py-28 bg-neway-cream">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}

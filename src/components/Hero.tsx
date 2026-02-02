@@ -22,7 +22,7 @@ export function Hero() {
 
       <header className="relative z-20 container mx-auto px-6 pt-8 md:pt-10">
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 1, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="flex flex-col"
@@ -38,7 +38,7 @@ export function Hero() {
 
       <div className="relative z-20 container mx-auto px-6 flex-1 flex flex-col items-center justify-center text-center py-16">
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 1, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl mx-auto leading-tight mb-4"
@@ -47,7 +47,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 1, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto"
@@ -56,7 +56,7 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 1, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         >
