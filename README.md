@@ -51,6 +51,16 @@ npm run build
 
 Conecte o repositório na Vercel; o build e o domínio são configurados automaticamente.
 
+### Página sem estilos (CSS não carrega)
+
+Se a página aparecer só com texto preto/azul e fundo branco (sem Tailwind):
+
+1. **Vercel** → seu projeto → **Settings** → **General** → **Build & Development Settings**
+2. Defina **Framework Preset** = **Next.js**
+3. Deixe **Output Directory** em branco (apague `public` se estiver preenchido)
+4. Salve e faça **Redeploy** (Deployments → ⋮ → Redeploy)
+5. Abra o site em aba anônima ou com hard refresh (Ctrl+Shift+R / Cmd+Shift+R)
+
 ## Scripts
 
 - `npm run dev` — desenvolvimento
