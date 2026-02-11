@@ -5,8 +5,8 @@
 @layer base {
   :root {
     /* Neway brand — azul principal usado em toda a página */
-    --neway-navy: #0e1e2c;
-    --neway-navy-hsl: 210 52% 11%;
+    --neway-navy: #283f53;
+    --neway-navy-hsl: 211 35% 24%;
 
     --background: 0 0% 100%;
     --foreground: var(--neway-navy-hsl);
@@ -14,7 +14,7 @@
     --card-foreground: var(--neway-navy-hsl);
     --popover: 0 0% 100%;
     --popover-foreground: var(--neway-navy-hsl);
-    --primary: 24 95% 53%;
+    --primary: 36 100% 47%;
     --primary-foreground: 0 0% 100%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: var(--neway-navy-hsl);
@@ -26,7 +26,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 24 95% 53%;
+    --ring: 36 100% 47%;
     --radius: 0.75rem;
   }
 
@@ -37,7 +37,7 @@
     --card-foreground: 210 40% 98%;
     --popover: var(--neway-navy-hsl);
     --popover-foreground: 210 40% 98%;
-    --primary: 24 95% 53%;
+    --primary: 36 100% 47%;
     --primary-foreground: 0 0% 100%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -49,7 +49,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 24 95% 53%;
+    --ring: 36 100% 47%;
   }
 }
 

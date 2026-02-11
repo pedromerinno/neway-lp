@@ -68,7 +68,7 @@ export function Testimonials() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Testimonials
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
@@ -85,7 +85,7 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto relative"
+          className="max-w-4xl mx-auto relative"
         >
           <div className="flex items-center gap-4">
             <Button

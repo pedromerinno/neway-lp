@@ -68,7 +68,7 @@ export function Services() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Services
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
@@ -89,7 +89,7 @@ export function Services() {
           {services.map(({ image, title, description }) => (
             <motion.div key={title} variants={card}>
               <Link href="#contact" className="group block">
-                <Card className="h-full border-0 bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-xl overflow-hidden">
+                <Card className="h-full border-0 bg-[#F8F7F4] rounded-xl overflow-hidden">
                   <div className="relative aspect-[4/3] rounded-t-xl overflow-hidden bg-neway-navy">
                     <Image
                       src={image}

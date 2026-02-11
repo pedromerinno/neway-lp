@@ -27,7 +27,7 @@ const item = {
 export function Gallery() {
   return (
     <section id="gallery" className="px-4 md:px-6 lg:px-8 py-12 md:py-16">
-      <div className="w-full py-20 md:py-28 px-6 md:px-10 bg-neway-navy rounded-2xl md:rounded-3xl overflow-hidden">
+      <div className="w-full py-20 md:py-28 px-6 md:px-10 bg-[#0E1E2C] rounded-2xl md:rounded-3xl overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export function Gallery() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-white/70 mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Our Services
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
@@ -51,7 +51,7 @@ export function Gallery() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-2 gap-4 md:gap-6"
+          className="grid grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto"
         >
           {images.map((src, i) => (
             <motion.div

@@ -21,23 +21,20 @@ const locations = [
 
 export function Footer() {
   return (
-    <footer className="bg-neway-navy text-white py-14 md:py-16">
+    <footer className="bg-[#0E1E2C] text-white py-14 md:py-16">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Logo + Licensed & Insured */}
           <div className="lg:col-span-1">
-            <Link href="#" className="inline-flex flex-col gap-0.5" aria-label="Neway Pools - início">
+            <Link href="#" className="inline-block w-fit" aria-label="Neway Pools - início">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo.svg"
                 alt="Neway"
                 width={160}
                 height={96}
-                className="h-10 w-auto md:h-12 invert"
+                className="h-12 w-auto md:h-14 invert"
               />
-              <span className="text-xs font-medium tracking-[0.2em] text-white uppercase">
-                POOLS
-              </span>
             </Link>
             <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-white/90">
               Licensed & Insured
@@ -125,9 +122,7 @@ export function Footer() {
                   <li>• Low-Fixed Rates</li>
                 </ul>
                 <Link
-                  href="https://www.hfsfinancial.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
                   className="inline-block w-full rounded-lg bg-neway-orange px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-neway-orange-hover transition-colors"
                 >
                   Apply Now
@@ -141,9 +136,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/60">
-          <span>Neway Pools</span>
-        </div>
+        {/* Removed bottom brand line */}
       </div>
     </footer>
   );

@@ -89,19 +89,90 @@ A Vercel faz build com `npm run build` e publica. A cada push em `main`, um novo
 
 ---
 
-## Formulário de contato (Formspree)
+## Formulário de contato (Supabase)
 
-O formulário está preparado para **Formspree**. Para ativar:
+O formulário grava leads no **Supabase** via `POST /api/contact` (server-side com `service role key`).
 
-1. Crie uma conta em [formspree.io](https://formspree.io).
-2. Crie um novo formulário e copie o **Form ID**.
-3. Em `src/components/ContactForm.tsx`, substitua `YOUR_FORM_ID` pela URL do Formspree:
+### 1) Variáveis de ambiente
 
-   ```ts
-   const res = await fetch("https://formspree.io/f/xxxxxxxx", {
-   ```
+Crie um `.env.local` baseado no `.env.local.example`:
 
-Alternativas: Supabase (Edge Functions) ou webhook (Make/Zapier) — altere o `fetch` em `onSubmit`.
+```bash
+cp .env.local.example .env.local
+```
+
+Preencha:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` (pública, ok expor)
+- `SUPABASE_SERVICE_ROLE_KEY` (server-only)
+
+### 2) Criar tabela no Supabase (SQL Editor)
+
+No Supabase Dashboard → **SQL Editor**, rode:
+
+```sql
+create extension if not exists pgcrypto;
+
+create table if not exists public.contact_leads (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  name text not null,
+  email text not null,
+  phone text not null,
+  city_state text not null,
+  type_of_interest text not null,
+  contacted boolean not null default false,
+  approximate_budget text,
+  message text,
+  ip inet,
+  country text,
+  region text,
+  city text,
+  referrer text,
+  user_agent text
+);
+
+alter table public.contact_leads enable row level security;
+
+create index if not exists contact_leads_created_at_idx
+  on public.contact_leads (created_at desc);
+
+create table if not exists public.pageviews (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  path text not null,
+  query text,
+  referrer text,
+  user_agent text,
+  ip inet,
+  country text,
+  region text,
+  city text,
+  session_id uuid,
+  is_admin boolean not null default false
+);
+
+alter table public.pageviews enable row level security;
+
+create index if not exists pageviews_created_at_idx
+  on public.pageviews (created_at desc);
+
+create index if not exists pageviews_path_idx
+  on public.pageviews (path);
+```
+
+> Observação: com RLS habilitado e **sem policies**, o acesso público fica bloqueado por padrão. O endpoint usa `SUPABASE_SERVICE_ROLE_KEY` (bypassa RLS) para inserir com segurança.
+
+### 3) Tracking de acessos (IP + região)
+
+O site registra pageviews em `public.pageviews` via `POST /api/track`.
+
+- **Escopo**: registramos **somente a Home (`/`)**. Não registramos `/admin`.
+- **Localização (cidade/estado/país)**:
+  - Em produção na **Vercel**, vem de headers como `x-vercel-ip-country`, `x-vercel-ip-country-region`, `x-vercel-ip-city`
+  - Se esses headers não existirem, tentamos um **fallback por IP** (best-effort) para preencher `city/region/country`
+  - Em **localhost**, é esperado aparecer `Localhost`/sem localização.
 
 ---
 

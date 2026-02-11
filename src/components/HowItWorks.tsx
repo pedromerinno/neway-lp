@@ -54,7 +54,7 @@ export function HowItWorks() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Process
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
@@ -77,7 +77,7 @@ export function HowItWorks() {
               <Card className="h-full border-0 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-xl overflow-hidden">
                 <CardContent className="p-6 md:p-8">
                   <div className="w-14 h-14 rounded-lg bg-neway-navy flex items-center justify-center mb-5">
-                    <span className="text-xl font-bold text-white">{number}</span>
+                    <span className="text-xl font-bold text-[#F09700]">{number}</span>
                   </div>
                   <h3 className="text-lg font-semibold text-neway-navy mb-2">
                     {title}

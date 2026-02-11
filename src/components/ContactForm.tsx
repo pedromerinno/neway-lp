@@ -70,13 +70,17 @@ export function ContactForm() {
     setSubmitStatus("loading");
 
     try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Failed to send");
+      const json = (await res.json().catch(() => null)) as
+        | { ok?: boolean }
+        | null;
+
+      if (!res.ok || !json?.ok) throw new Error("Failed to send");
 
       setSubmitStatus("success");
       reset();
@@ -95,7 +99,7 @@ export function ContactForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-[#8b7355] mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Contact
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">

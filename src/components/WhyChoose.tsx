@@ -55,7 +55,7 @@ export function WhyChoose() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             About Us
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">

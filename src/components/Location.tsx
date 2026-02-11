@@ -2,26 +2,30 @@
 
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent } from "@/ui/card";
+import { Button } from "@/ui/button";
 
 const locations = [
-  { city: "Orlando", description: "Florida" },
-  { city: "Sarasota", description: "Florida" },
-  { city: "Fort Myers", description: "Florida" },
-];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
+  {
+    city: "Gulf Breeze",
+    state: "Florida",
+    abbr: "FL",
+    visitUrl: "#",
   },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+  {
+    city: "Cumming",
+    state: "Georgia",
+    abbr: "GA",
+    visitUrl: "#",
+  },
+  {
+    city: "Wilmington",
+    state: "North Carolina",
+    abbr: "NC",
+    visitUrl: "#",
+  },
+];
 
 export function Location() {
   return (
@@ -34,42 +38,51 @@ export function Location() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+          <p className="text-sm font-medium uppercase tracking-wider text-[#B28C4E] mb-2">
             Locations
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-neway-navy mb-3">
-            Location & Service Areas
+            Choose one of our locations closest to you
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            We serve Orlando, Sarasota, Fort Myers and surrounding areas.
+            Florida, Georgia & North Carolina — we serve and surround these areas.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-        >
-          {locations.map(({ city, description }) => (
-            <motion.div key={city} variants={item}>
-              <Card className="h-full border-0 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-xl overflow-hidden">
-                <CardContent className="p-6 md:p-8">
-                  <div className="w-12 h-12 rounded-lg bg-neway-orange flex items-center justify-center mb-5">
-                    <MapPin className="w-6 h-6 text-white" aria-hidden />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+          {locations.map(({ city, state, abbr, visitUrl }) => (
+            <Card
+              key={abbr}
+              className="h-full border-0 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-xl overflow-hidden flex flex-col"
+            >
+              <CardContent className="p-6 md:p-8 flex flex-col flex-1 items-center text-center">
+                <div className="flex justify-center mb-5">
+                  <div className="relative w-24 h-24 rounded-xl bg-neway-orange/15 flex items-center justify-center">
+                    <MapPin
+                      className="w-10 h-10 text-neway-orange-hover"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
                   </div>
-                  <h3 className="text-lg font-semibold text-neway-navy mb-2">
-                    {city}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {description}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+                </div>
+                <h3 className="text-lg font-semibold text-neway-navy mb-1 uppercase tracking-wide">
+                  {city}
+                </h3>
+                <p className="text-neway-orange font-medium text-sm uppercase tracking-wide mb-6">
+                  {state}
+                </p>
+                <Link href={visitUrl} className="mt-auto w-full">
+                  <Button
+                    variant="default"
+                    className="w-full bg-neway-navy hover:bg-neway-navy/90 text-white rounded-lg"
+                  >
+                    Visit Neway {abbr}
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
