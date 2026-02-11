@@ -1,3 +1,5 @@
+import { normalizeHumanText } from "@/lib/safe-decode";
+
 export type VercelGeo = {
   country: string | null;
   region: string | null;
@@ -24,10 +26,16 @@ export function getClientIp(headers: Headers) {
 }
 
 export function getVercelGeo(headers: Headers): VercelGeo {
+  const country = firstHeaderValue(headers, "x-vercel-ip-country");
+  const region = firstHeaderValue(headers, "x-vercel-ip-country-region");
+  const city = firstHeaderValue(headers, "x-vercel-ip-city");
+
   return {
-    country: firstHeaderValue(headers, "x-vercel-ip-country"),
-    region: firstHeaderValue(headers, "x-vercel-ip-country-region"),
-    city: firstHeaderValue(headers, "x-vercel-ip-city"),
+    // Vercel geo headers can be URL-encoded (e.g. São Paulo -> S%C3%A3o%20Paulo).
+    // Normalize to a human-readable string before we store/use it.
+    country: country ? normalizeHumanText(country) : null,
+    region: region ? normalizeHumanText(region) : null,
+    city: city ? normalizeHumanText(city) : null,
   };
 }
 

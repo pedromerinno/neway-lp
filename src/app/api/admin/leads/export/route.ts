@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { toCsv } from "@/lib/csv";
+import { normalizeHumanText } from "@/lib/safe-decode";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -56,9 +57,9 @@ export async function GET(request: NextRequest) {
     message: lead.message ?? "",
     contacted: lead.contacted ? "true" : "false",
     ip: lead.ip ?? "",
-    country: lead.country ?? "",
-    region: lead.region ?? "",
-    city: lead.city ?? "",
+    country: lead.country ? normalizeHumanText(lead.country) : "",
+    region: lead.region ? normalizeHumanText(lead.region) : "",
+    city: lead.city ? normalizeHumanText(lead.city) : "",
     referrer: lead.referrer ?? "",
     user_agent: lead.user_agent ?? "",
     id: lead.id,

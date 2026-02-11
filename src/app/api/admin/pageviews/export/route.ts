@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { toCsv } from "@/lib/csv";
+import { normalizeHumanText } from "@/lib/safe-decode";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,9 +34,9 @@ export async function GET(request: NextRequest) {
     created_at: pv.created_at,
     path: pv.path,
     query: pv.query ?? "",
-    country: pv.country ?? "",
-    region: pv.region ?? "",
-    city: pv.city ?? "",
+    country: pv.country ? normalizeHumanText(pv.country) : "",
+    region: pv.region ? normalizeHumanText(pv.region) : "",
+    city: pv.city ? normalizeHumanText(pv.city) : "",
     ip: pv.ip ?? "",
     session_id: pv.session_id ?? "",
     is_admin: pv.is_admin ? "true" : "false",

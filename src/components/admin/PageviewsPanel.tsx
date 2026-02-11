@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/ui/table";
 import { Download, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { normalizeHumanText } from "@/lib/safe-decode";
 
 interface Pagination {
   page: number;
@@ -58,7 +59,9 @@ export default function PageviewsPanel() {
 
   function formatGeo(pv: Pageview) {
     // Desired order: City / State(Region) / Country
-    const parts = [pv.city, pv.region, pv.country].filter(Boolean);
+    const parts = [pv.city, pv.region, pv.country]
+      .filter(Boolean)
+      .map((v) => normalizeHumanText(String(v)));
     if (parts.length) return parts.join(" / ");
 
     const ip = (pv.ip ?? "").toLowerCase();
