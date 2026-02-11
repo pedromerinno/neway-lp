@@ -41,8 +41,8 @@ export default function AdminLoginPage() {
       return;
     }
 
-    router.push("/admin");
-    router.refresh();
+    // Force full navigation so middleware receives fresh cookies in production (Vercel).
+    window.location.assign("/admin");
   }
 
   return (
