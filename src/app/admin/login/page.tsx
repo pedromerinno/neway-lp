@@ -5,6 +5,7 @@ import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
+import Link from "next/link";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -18,7 +19,17 @@ export default function AdminLoginPage() {
     setError("");
     setLoading(true);
 
-    const supabase = getSupabaseBrowserClient();
+    let supabase: ReturnType<typeof getSupabaseBrowserClient>;
+    try {
+      supabase = getSupabaseBrowserClient();
+    } catch {
+      setError(
+        "Admin indisponível: configure as variáveis do Supabase na Vercel (/admin/setup).",
+      );
+      setLoading(false);
+      return;
+    }
+
     const { error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -94,6 +105,15 @@ export default function AdminLoginPage() {
             >
               {loading ? "Entrando..." : "Entrar"}
             </Button>
+
+            <div className="text-center text-sm">
+              <Link
+                href="/admin/setup"
+                className="text-neway-navy/70 underline-offset-4 hover:underline"
+              >
+                Problemas no login? Ver configuração
+              </Link>
+            </div>
           </div>
         </form>
       </div>

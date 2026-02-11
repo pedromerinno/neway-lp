@@ -8,8 +8,16 @@ export async function middleware(request: NextRequest) {
   // If Supabase env isn't configured, don't crash the app.
   // We just disable /admin/* until NEXT_PUBLIC_SUPABASE_URL/ANON_KEY are set.
   if (!supabase) {
-    const homeUrl = new URL("/", request.url);
-    return NextResponse.redirect(homeUrl);
+    const pathname = request.nextUrl.pathname;
+    const isAllowed =
+      pathname === "/admin/login" ||
+      pathname === "/admin/setup" ||
+      pathname.startsWith("/admin/setup/");
+
+    if (isAllowed) return response;
+
+    const setupUrl = new URL("/admin/setup", request.url);
+    return NextResponse.redirect(setupUrl);
   }
 
   const {
