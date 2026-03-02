@@ -121,6 +121,7 @@ create table if not exists public.contact_leads (
   email text not null,
   phone text not null,
   city_state text not null,
+  neighborhood text,
   type_of_interest text not null,
   contacted boolean not null default false,
   approximate_budget text,

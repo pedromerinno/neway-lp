@@ -1,6 +1,7 @@
 "use client";
 
 import type { Lead } from "@/lib/types/lead";
+import { normalizeHumanText } from "@/lib/safe-decode";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +24,13 @@ function formatDate(dateStr: string) {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+function formatGeo(lead: Lead) {
+  const parts = [lead.city, lead.region, lead.country]
+    .filter(Boolean)
+    .map((v) => normalizeHumanText(String(v)));
+  return parts.length ? parts.join(" / ") : "";
 }
 
 export default function LeadDetailDialog({
@@ -55,10 +63,17 @@ export default function LeadDetailDialog({
           <Row label="Email" value={lead.email} />
           <Row label="Telefone" value={lead.phone} />
           <Row label="Cidade/Estado" value={lead.city_state} />
+          {lead.neighborhood ? (
+            <Row label="Bairro" value={lead.neighborhood} />
+          ) : null}
           <Row label="Interesse" value={lead.type_of_interest} />
           {lead.approximate_budget && (
             <Row label="Orçamento" value={lead.approximate_budget} />
           )}
+          {formatGeo(lead) ? (
+            <Row label="Local (IP)" value={formatGeo(lead)} />
+          ) : null}
+          {lead.ip ? <Row label="IP" value={String(lead.ip)} /> : null}
           {lead.message && (
             <div>
               <span className="font-medium text-neway-navy/70">Mensagem</span>

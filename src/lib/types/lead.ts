@@ -4,6 +4,7 @@ export interface Lead {
   email: string;
   phone: string;
   city_state: string;
+  neighborhood?: string | null;
   type_of_interest: string;
   approximate_budget: string | null;
   message: string | null;

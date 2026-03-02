@@ -12,6 +12,7 @@ type ContactLeadInsert = {
   email: string;
   phone: string;
   city_state: string;
+  neighborhood?: string | null;
   type_of_interest: string;
   approximate_budget?: string | null;
   message?: string | null;
@@ -35,10 +36,8 @@ export async function POST(req: Request) {
       name: payload.name,
       email: payload.email,
       phone: payload.phone,
-      city_state: payload.cityState,
+      city_state: "",
       type_of_interest: payload.typeOfInterest,
-      approximate_budget: payload.approximateBudget ?? null,
-      message: payload.message ?? null,
       ip,
       ...geo,
       referrer: getReferrer(req.headers),
